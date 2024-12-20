@@ -1,15 +1,9 @@
-const { fetchCovidDataFromApiNinjas, fetchCovidDataFromApify } = require('../services/covidService');
+const { fetchCovidDataFromApiNinjas } = require('../services/covidService');
 
-const getCovidData = async (req, res) => {
+const getCovidData = async (req, res, country) => {
     try {
-        const apininjasData = await fetchCovidDataFromApiNinjas();
-        const apifyData = await fetchCovidDataFromApify();
-
-        res.status(200).json({
-            message: 'Data fetched successfully',
-            apininjasData,
-            apifyData,
-        });
+        const apininjasData = await fetchCovidDataFromApiNinjas(country);
+        res.json(apininjasData);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

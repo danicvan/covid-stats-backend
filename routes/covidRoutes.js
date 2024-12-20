@@ -3,6 +3,6 @@ const { getCovidData } = require('../controllers/covidController');
 
 const router = express.Router();
 
-router.get('/covid-data', getCovidData);
+router.get('/', (req, res) => getCovidData(req, res, req.query.country));
 
 module.exports = router;
